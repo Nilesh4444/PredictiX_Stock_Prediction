@@ -9,9 +9,9 @@ scipy==1.13.1
 matplotlib==3.9.4
 requests==2.32.3
 urllib3==2.3.0
-#tensorflow-cpu==2.18.0  Lightweight TensorFlow version
+tensorflow-cpu==2.18.0  # Lightweight TensorFlow version
 # OR use TensorFlow Lite (uncomment the line below if needed)
-tensorflow-lite==2.18.0
+# tensorflow-lite==2.18.0
 # OR use ONNX Runtime (uncomment if needed)
 # onnxruntime==1.17.0
 yfinance==0.2.54
