@@ -1,17 +1,16 @@
 Flask==3.1.0
-tensorflow==2.18.0
-tensorflow-io-gcs-filesystem==0.31.0
-scikit-learn==1.6.1
-pandas==2.2.3
-numpy==2.0.2
-matplotlib==3.9.4
-scipy==1.13.1
-joblib==1.4.2
-threadpoolctl==3.5.0
-requests==2.32.3
-yfinance==0.2.54
-protobuf==5.29.3
-Werkzeug==3.1.3
 Jinja2==3.1.6
-python-dateutil==2.9.0.post0
-tzdata==2025.1
+MarkupSafe==3.0.2
+Werkzeug==3.1.3
+numpy==2.0.2
+pandas==2.2.3
+scikit-learn==1.6.1
+scipy==1.13.1
+matplotlib==3.9.4
+requests==2.32.3
+urllib3==2.3.0
+tensorflow-cpu==2.18.0  # Lightweight TensorFlow version
+# OR use TensorFlow Lite (uncomment the line below if needed)
+# tensorflow-lite==2.18.0
+# OR use ONNX Runtime (uncomment if needed)
+# onnxruntime==1.17.0
