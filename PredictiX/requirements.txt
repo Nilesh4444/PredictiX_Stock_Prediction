@@ -14,3 +14,6 @@ tensorflow-cpu==2.18.0  # Lightweight TensorFlow version
 # tensorflow-lite==2.18.0
 # OR use ONNX Runtime (uncomment if needed)
 # onnxruntime==1.17.0
+yfinance==0.2.54
+
+
