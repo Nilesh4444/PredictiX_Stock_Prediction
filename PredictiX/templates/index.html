@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Price Prediction</title>
+    <head>
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+        </head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+    </style>
+</head>
+<body>
+    <header class="company-header">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Company Logo" class="company-logo">
+        <h1 class="company-name">Predictix </h1>
+    </header>
+    
+    <!-- Main Container for Stock Price Prediction -->
+    <div class="container">
+        <h1><i class="fas fa-chart-line"></i> Stock Price Prediction</h1>
+        <div class="input-container">
+            <input type="text" id="ticker" placeholder="Enter stock ticker (e.g., TCS.NS)">
+            <input type="date" id="prediction_date" placeholder="Enter prediction date">
+            <input type="time" id="prediction_time" placeholder="Enter prediction time">
+            <button onclick="predict()"><i class="fas fa-search"></i> Predict</button>
+        </div>
+        <div class="loader" id="loader"></div>
+        <div class="results" id="results" style="display:none;">
+            <div class="info">
+                <img id="logo" src="" alt="Logo">
+                <p><strong>Company:</strong> <span id="company-name"></span></p>
+                <p><strong>Sector:</strong> <span id="sector"></span></p>
+                <p><strong>Market Cap:</strong> <span id="market-cap"></span></p>
+                <p><strong>Current Price:</strong> <span id="current-price"></span></p>
+                <p><strong>Day High:</strong> <span id="day-high"></span></p>
+                <p><strong>Day Low:</strong> <span id="day-low"></span></p>
+                <p><strong>52-Week High:</strong> <span id="fifty-two-week-high"></span></p>
+                <p><strong>52-Week Low:</strong> <span id="fifty-two-week-low"></span></p>
+                <p><strong>Dividend Yield:</strong> <span id="dividend-yield"></span></p>
+                <p><strong>P/E Ratio:</strong> <span id="pe-ratio"></span></p>
+                <p><strong>Revenue:</strong> <span id="revenue"></span></p>
+                <p><strong>Earnings:</strong> <span id="earnings"></span></p>
+                <p><strong>Latest Performance (Last 5 Days):</strong> <span id="latest-performance"></span></p>
+            </div>
+            <p id="prediction-date"><strong>Prediction Date:</strong> <span id="prediction-date-result"></span></p>
+            <p id="prediction-time"><strong>Prediction Time:</strong> <span id="prediction-time-result"></span></p>
+            <p id="predicted-price"><strong>Predicted Price:</strong> <span id="predicted-price-result"></span></p>
+
+            <p class="suggestion"><strong>Suggestion:</strong> <span id="suggestion"></span></p>
+            <div class="graph-container">
+                <a id="graph-1y-link" href="#" target="_blank">
+                    <img id="graph-1y" src="" alt="1-Year Graph">
+                </a>
+                <a id="graph-1m-link" href="#" target="_blank">
+                    <img id="graph-1m" src="" alt="1-Month Graph">
+                </a>
+                <a id="graph-1w-link" href="#" target="_blank">
+                    <img id="graph-1w" src="" alt="1-Week Graph">
+                </a>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Section -->
+    <div class="about-us">
+        <div class="box">
+            <h2>About Us</h2>
+            <p>We are a team of the financial market and technology, dedicated to providing stock price predictions.</p>
+        </div>
+        <div class="box">
+            <h2>Our Mission</h2>
+            <p>Our mission is to empower investors with the knowledge they need to make informed decisions.</p>
+        </div>
+        <div class="box">
+            <h2>Our Vision</h2>
+            <p>Our vision is to become the leading platform for stock market insights.</p>
+        </div>
+        <div class="box">
+            <h2>What Sets Us Apart</h2>
+            <p>Our predictions and algorithms stand out from competitors due to our advanced machine learning techniques and real-time data analysis.</p>
+        </div>
+    </div>
+
+    <!-- Contact Us Section -->
+    <div class="contact-us">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or need support, feel free to reach out to us:</p>
+        <p><strong>Email:</strong> predictix2025@gmail.com</p>
+        
+        
+        
+    </div>
+
+    <script>
+        async function predict() {
+            const ticker = document.getElementById('ticker').value.trim();
+            const predictionDate = document.getElementById('prediction_date').value;
+            const predictionTime = document.getElementById('prediction_time').value;
+
+            if (ticker === "" || predictionDate === "" || predictionTime === "") {
+                alert("Please enter a valid stock ticker, prediction date, and time!");
+                return;
+            }
+
+            document.getElementById('loader').style.display = 'block';
+            document.getElementById('results').style.display = 'none';
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `ticker=${ticker}&prediction_date=${predictionDate}&prediction_time=${predictionTime}`
+                });
+
+                const result = await response.json();
+
+                if (result.error) {
+                    alert(result.error);
+                    return;
+                }
+
+                document.getElementById('logo').src = result.logo_url;
+                document.getElementById('company-name').innerText = result.company_name;
+                document.getElementById('sector').innerText = result.sector;
+                document.getElementById('market-cap').innerText = result.market_cap;
+                document.getElementById('current-price').innerText = `$${result.current_price.toFixed(2)}`;
+                document.getElementById('day-high').innerText = `$${result.day_high.toFixed(2)}`;
+                document.getElementById('day-low').innerText = `$${result.day_low.toFixed(2)}`;
+                document.getElementById('fifty-two-week-high').innerText = `$${result.fifty_two_week_high.toFixed(2)}`;
+                document.getElementById('fifty-two-week-low').innerText = `$${result.fifty_two_week_low.toFixed(2)}`;
+                document.getElementById('dividend-yield').innerText = `${result.dividend_yield.toFixed(2)}%`;
+                document.getElementById('pe-ratio').innerText = result.pe_ratio;
+                document.getElementById('revenue').innerText = result.revenue;
+                document.getElementById('earnings').innerText = result.earnings;
+                document.getElementById('latest-performance').innerText = result.latest_performance.map(p => `$${p.toFixed(2)}`).join(', ');
+                document.getElementById('prediction-date-result').innerText = result.prediction_date;
+                document.getElementById('prediction-time-result').innerText = result.prediction_time;
+                document.getElementById('predicted-price-result').innerText = `$${result.predicted_price.toFixed(2)}`; // Fixed this line
+
+                // Set suggestion color and text
+                const suggestionElement = document.getElementById('suggestion');
+                suggestionElement.innerText = result.suggestion;
+                suggestionElement.className = `suggestion ${result.suggestion.toLowerCase()}`;
+
+                // Display graphs
+                document.getElementById('graph-1y-link').href = result.graph_1y;
+                document.getElementById('graph-1m-link').href = result.graph_1m;
+                document.getElementById('graph-1w-link').href = result.graph_1w;
+
+                document.getElementById('graph-1y').src = result.graph_1y;
+                document.getElementById('graph-1m').src = result.graph_1m;
+                document.getElementById('graph-1w').src = result.graph_1w;
+
+                document.getElementById('results').style.display = 'block';
+            } catch (error) {
+                alert("Error fetching stock data. Please try again.");
+            } finally {
+                document.getElementById('loader').style.display = 'none';
+            }
+        }
+
+        // Handle feedback form submission
+        document.getElementById('feedback-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert("Thank you for your feedback!");
+            this.reset(); // Reset the form
+        });
+    </script>
+</body>
+</html>

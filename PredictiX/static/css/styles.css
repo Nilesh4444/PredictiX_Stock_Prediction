@@ -1,0 +1,301 @@
+
+.company-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: none;
+    padding: 15px;
+}
+
+.company-logo {
+    width: 50px;
+    height: auto;
+    margin-right: 15px;
+}
+
+.company-name {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, rgba(30, 60, 114, 0.9), rgba(42, 82, 152, 0.9)),
+                url('https://plus.unsplash.com/premium_photo-1664476845274-27c2dabdd7f0?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3RvY2slMjBtYXJrZXR8ZW58MHx8MHx8fDA%3D');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff;
+}
+
+/* Main Container */
+.container {
+    max-width: 1200px;
+    width: 90%;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 40px 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    animation: slideFadeIn 1s ease forwards;
+    margin-bottom: 20px;
+}
+
+@keyframes slideFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Heading with increased size and subtle text shadow */
+h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1.5px;
+}
+
+/* Input Container & Fields styling */
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"] {
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+    outline: none;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]::placeholder,
+input[type="date"]::placeholder,
+input[type="time"]::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus {
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 0 10px rgba(30, 144, 255, 0.7);
+}
+
+/* Button with gradient background and scale transform on hover */
+button {
+    padding: 12px 20px;
+    background: linear-gradient(45deg, #28a745, #1e7e34);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+    background: linear-gradient(45deg, #218838, #155724);
+    transform: scale(1.05);
+}
+
+/* Loader */
+.loader {
+    display: none;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top: 5px solid #28a745;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* Results Section */
+.results {
+    text-align: left;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 20px;
+    border-radius: 10px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.results p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #fff;
+}
+
+/* Suggestion Text with a glowing animation */
+.suggestion {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.6); }
+    to   { text-shadow: 0 0 20px rgba(255, 255, 255, 1); }
+}
+
+/* Color Classes for Different States */
+.buy { color: #40c6e1; }
+.sell { color: #dc3545; }
+.hold { color: #ffc107; }
+
+/* Graph Container */
+.graph-container {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.graph-container img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
+    
+}
+
+.graph-container img:hover {
+    transform: scale(1.02);
+}
+
+/* About Us Section */
+
+
+/* Contact Us Section */
+.contact-us {
+    max-width: 1200px;
+    width: 90%;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    margin: 20px 0;
+}
+
+.contact-us form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.contact-us input[type="text"],
+.contact-us input[type="email"],
+.contact-us textarea {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+    outline: none;
+}
+
+.contact-us button {
+    padding: 12px 20px;
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.contact-us button:hover {
+    background: linear-gradient(45deg, #0056b3, #003d80);
+}
+#prediction-date {
+color: #40c6e1;  /* Blue */
+font-size: 22px;
+font-weight: bold;
+}
+
+#prediction-time {
+color: #afe217;  /* Green */
+font-size: 22px;
+font-weight: bold;
+}
+
+#predicted-price {
+color: #dc3545;  /* Red */
+font-size: 24px;
+font-weight: bold;
+
+}
+
+.about-us {
+display: flex;          /* Arrange items in a row */
+flex-wrap: wrap;        /* Wrap to the next row if space is insufficient */
+gap: 15px;              /* Space between boxes */
+max-width: 100%;        /* Ensure it takes up the available width */
+justify-content: center; /* Center align the row items */
+font-family: Arial, sans-serif;
+margin: 20px auto;
+}
+
+.about-us .box {
+background-color: #f8f9fa; /* Light gray background */
+border: 1px solid #ddd;   /* Border around each box */
+border-radius: 8px;       /* Rounded corners */
+padding: 15px;            /* Inner spacing */
+color: #333;              /* Dark text color */
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+width: 250px;             /* Set a consistent width for the boxes */
+text-align: center;       /* Center-align text */
+}
+
+.about-us .box h2 {
+font-size: 18px;          /* Adjust the font size for the heading */
+font-weight: bold;
+margin-bottom: 10px;      /* Space below the title */
+color: #0056b3;           /* Accent color for heading */
+}
+
+.about-us .box p {
+font-size: 16px;          /* Standard text size */
+line-height: 1.6;         /* Improve readability */
+}
+
